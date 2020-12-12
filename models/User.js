@@ -18,7 +18,7 @@ const User = mongoose.model(
 		},
 		dateOfBirth: {
 			type: String,
-			required: false,
+			required: true,
 		},
 		enrolledCourses: {
 			type: Array,
