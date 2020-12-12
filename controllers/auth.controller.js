@@ -1,6 +1,5 @@
-const config = require("../config/auth.config");
-const db = require("../models");
-const User = db.user;
+const config = require("config");
+const User = require('../models/User');
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -14,7 +13,7 @@ exports.signup = (req, res, next) => {
         email: req.body.email,
         password: hash,
         dateOfBirth: req.body.dateOfBirth,
-        
+
       });
       user.save().then(
         () => {

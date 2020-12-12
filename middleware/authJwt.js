@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
-const db = require("../models");
-
-const User = db.user;
+const config = require("config");
+const User = require("../models/User");
 
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -12,7 +10,7 @@ verifyToken = (req, res, next) => {
   }
 
   try {
-    jwt.verify(token, config.secret, (err, decoded) => {
+    jwt.verify(token, config.get('privateAuthKey'), (err, decoded) => {
       if (err) {
         return res.status(401).send({ message: "Unauthorized!" });
       }

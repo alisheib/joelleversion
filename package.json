@@ -8,9 +8,7 @@
     "server": "nodemon server.js"
   },
   "nodemonConfig": {
-    "ignore": [
-      "logs/*"
-    ]
+    "ignore": ["logs/*"]
   },
   "repository": {
     "type": "git",
