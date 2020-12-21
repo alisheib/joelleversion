@@ -17,7 +17,7 @@ const Course = mongoose.model(
 		},
 		instructorID: {
 			type: mongoose.Schema.Types.ObjectId,
-			required: false,
+			required: true,
 		},
 		students: {
 			type: [mongoose.Schema.Types.ObjectId],
