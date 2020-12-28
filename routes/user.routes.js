@@ -34,6 +34,9 @@ router.put(
   users.update
 );
 
+//Hash then Update Password 
+router.put('/updatepassword/:ObjectId' , users.updatePassword);
+
 // Delete a User with Id
 router.delete("/users/:ObjectId", users.delete);
 
