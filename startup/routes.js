@@ -25,9 +25,9 @@ module.exports = function (app) {
 		res.json({ message: "Welcome to IJAM." });
 	});
 
-	app.use('/auth', authRoutes)
-	app.use('/users', usersRoutes);
-	app.use('/courses', coursesRoutes);
+	app.use('/api/auth', authRoutes)
+	app.use('/api/users', usersRoutes);
+	app.use('/api/courses', coursesRoutes);
 	// add new routes with a similar format
 
 	// simple redirection route so users can't access undefined routes

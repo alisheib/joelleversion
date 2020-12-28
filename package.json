@@ -4,11 +4,17 @@
   "description": "ijam platform",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "nodemonConfig": {
-    "ignore": ["logs/*"]
+    "ignore": [
+      "logs/*"
+    ]
   },
   "repository": {
     "type": "git",
@@ -23,6 +29,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
+    "concurrently": "^5.3.0",
     "config": "^3.3.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
