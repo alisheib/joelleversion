@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class error extends React.Component {
   render() {
@@ -13,11 +14,11 @@ class error extends React.Component {
                 <div className="container h-100">
                   <div className="row h-100">
                     <div className="col-12 text-center h-100 d-flex align-items-center">
-                      <div className="w-100"><img className="img-fluid d-inline mb-5" src="assests/images/404.png" alt />
+                      <div className="w-100"><img className="img-fluid d-inline mb-5" src="assests/images/404.png" alt="error 404" />
                         <h2>Oops! Page Not Found</h2>
                         <h6>You’re either misspelling the URL
                   or requesting a page that's no longer here.</h6>
-                        <a className="btn btn-primary" href="index.html">Back To Home Page</a>
+                        <Link className="btn btn-primary" to="index.html">Back To Home Page</Link>
                       </div>
                     </div>
                   </div>
@@ -29,7 +30,7 @@ class error extends React.Component {
           </div>
           {/* page wrapper end */}
           {/*back-to-top start*/}
-          <div className="scroll-top"><a className="smoothscroll" href="#top">Scroll Top</a></div>
+          <div className="scroll-top"><Link className="smoothscroll" to="#top">Scroll Top</Link></div>
 
         </>
 

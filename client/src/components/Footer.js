@@ -9,9 +9,9 @@ class Footer extends React.Component {
           <footer>
             <div className="container">
               <div className="row">
-                <div className="col-12 col-lg-5 col-xl-4 mr-auto mb-5 mb-lg-0"> <a className="footer-logo h2 text-primary mb-0 font-w-7" href="index.html">
+                <div className="col-12 col-lg-5 col-xl-4 mr-auto mb-5 mb-lg-0"> <Link className="footer-logo h2 text-primary mb-0 font-w-7" to="index.html">
                   I<span className="text-dark font-w-4">Jam</span>
-                </a>
+                </Link>
                   <p className="my-3">IJam, learn today Jam tomorrow</p>
                   <ul className="list-inline">
                     <li className="list-inline-item">
@@ -36,13 +36,13 @@ class Footer extends React.Component {
                     <div className="col-12 col-sm-4 navbar-light">
                       <h5 className="mb-4">Pages</h5>
                       <ul className="list-unstyled mb-0">
-                        <li className="mb-3"><a className="list-group-item-action" href="about-us-1.html">About</a>
+                        <li className="mb-3"><Link className="list-group-item-action" to="about-us-1.html">About</Link>
                         </li>
-                        <li className="mb-3"><a className="list-group-item-action" href="product-grid.html">Shop</a>
+                        <li className="mb-3"><Link className="list-group-item-action" to="product-grid.html">Shop</Link>
                         </li>
-                        <li className="mb-3"><a className="list-group-item-action" href="faq.html">Faq</a>
+                        <li className="mb-3"><Link className="list-group-item-action" to="faq.html">Faq</Link>
                         </li>
-                        <li><a className="list-group-item-action" href="contact-us.html">Contact Us</a>
+                        <li><Link className="list-group-item-action" to="contact-us.html">Contact Us</Link>
                         </li>
                       </ul>
                     </div>
@@ -52,7 +52,7 @@ class Footer extends React.Component {
                         <li className="mb-3"><Link className="list-group-item-action">Content Writing</Link></li>
                         <li className="mb-3"><Link className="list-group-item-action">Documentation</Link></li>
                         <li className="mb-3"><Link className="list-group-item-action" to="/login">Account</Link></li>
-                        <li><a className="list-group-item-action" href="career.html">Careers</a>
+                        <li><Link className="list-group-item-action" to="career.html">Careers</Link>
                         </li>
                       </ul>
                     </div>
@@ -61,9 +61,9 @@ class Footer extends React.Component {
                       <div className="mb-3">
                         <p className="mb-0 text-muted">423B, Road Wordwide Country, USA</p>
                       </div>
-                      <div className="mb-3"> <a className="btn-link" href="mailto:themeht23@gmail.com"> themeht23@gmail.com</a>
+                      <div className="mb-3"> <Link className="btn-link" to="mailto:themeht23@gmail.com"> themeht23@gmail.com</Link>
                       </div>
-                      <div> <a className="btn-link" href="tel:+912345678900">+91-234-567-8900</a>
+                      <div> <Link className="btn-link" to="tel:+912345678900">+91-234-567-8900</Link>
                       </div>
                     </div>
                   </div>

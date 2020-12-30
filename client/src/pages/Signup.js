@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
+
+
 class Signup extends React.Component {
   render() {
     return (
@@ -76,16 +78,6 @@ class Signup extends React.Component {
                             </div>
                           </div>
                           <div className="row">
-                            <div className="col-md-6">
-                              <div className="form-group">
-                                <select className="form-control">
-                                  <option selected>Gender</option>
-                                  <option value="male">Male</option>
-                                  <option value="female">Female</option>
-                                </select>
-                                <div className="help-block with-errors" />
-                              </div>
-                            </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <select className="form-control">
@@ -195,7 +187,6 @@ class Signup extends React.Component {
                                   <option value="IQ">Iraq</option>
                                   <option value="IR">Ireland</option>
                                   <option value="IM">Isle of Man</option>
-                                  <option value="IL">Israel</option>
                                   <option value="IT">Italy</option>
                                   <option value="JM">Jamaica</option>
                                   <option value="JP">Japan</option>
@@ -341,6 +332,12 @@ class Signup extends React.Component {
                                 <div className="help-block with-errors" />
                               </div>
                             </div>
+                            <div className="col-md-6">
+                              <div className="form-group">
+                                <input type="date" id="birthday" name="birthday" required="required" data-error="Date of Birth is required" className="form-control" />
+                                <div className="help-block with-errors" />
+                              </div>
+                            </div>
                           </div>
                           <div className="row mt-4">
                             <div className="col-md-12">
@@ -355,7 +352,7 @@ class Signup extends React.Component {
                           <div className="row">
                             <div className="col">
                               <Link to="#" className="btn btn-primary">Create Account</Link>
-                              <span className="mt-4 d-block">Have An Account ? <Link to='/' >Sign In!</Link></span>
+                              <span className="mt-4 d-block">Have An Account ? <Link to='/sign-in' >Sign In!</Link></span>
                             </div>
                           </div>
                         </form>
@@ -374,7 +371,7 @@ class Signup extends React.Component {
 
           </div>
 
-          <div className="scroll-top"><a className="smoothscroll" href="#top">Scroll Top</a></div>
+          <div className="scroll-top"><Link className="smoothscroll" to="#top">Scroll Top</Link></div>
         </>
 
       </div>

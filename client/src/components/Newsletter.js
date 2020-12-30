@@ -18,7 +18,7 @@ class Newsletter extends React.Component {
                         <div className="subscribe-form text-center">
                           <form id="mc-form" className="row mb-3">
                             <div className="col-md">
-                              <input type="email" defaultValue name="EMAIL" className="email form-control border-0 shadow-sm rounded mt-3 mt-md-0" id="mc-email" placeholder="Email Address" required />
+                              <input type="email" defaultValue="" name="EMAIL" className="email form-control border-0 shadow-sm rounded mt-3 mt-md-0" id="mc-email" placeholder="Email Address" required />
                             </div>
                             <div className="col-md-auto">
                               <input className="btn btn-dark mt-3 mt-md-0" type="submit" name="submit" defaultValue="Submit" />

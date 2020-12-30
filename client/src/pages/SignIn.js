@@ -66,7 +66,7 @@ class SignIn extends React.Component {
 
           </div>
 
-          <div className="scroll-top"><a className="smoothscroll" href="#top">Scroll Top</a></div>
+          <div className="scroll-top"><Link className="smoothscroll" to="#top">Scroll Top</Link></div>
         </>
 
       </div>

@@ -15,10 +15,11 @@
   7. Spacing
  ------------------------ */
 
-@import 'bootstrap.min.css';
-@import 'animate.css';
-@import 'line-awesome.min.css';
-@import 'magnific-popup.css';
-@import 'owl.carousel.css';
-@import 'lightslider.min.css';
-@import 'spacing.css';
+@import "bootstrap.min.css";
+@import "animate.css";
+@import "line-awesome.min.css";
+@import "magnific-popup.css";
+@import "owl.carousel.css";
+@import "lightslider.min.css";
+@import "spacing.css";
+@import "style.css";
