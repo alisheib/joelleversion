@@ -18,6 +18,7 @@ exports.create = (req, res) => {
     !req.body.username ||
     !req.body.password ||
     !req.body.email ||
+    !req.body.phone ||
     !req.body.country ||
     !req.body.dateOfBirth
   ) {
@@ -31,6 +32,7 @@ exports.create = (req, res) => {
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
+      phone: req.body.phone,
       country: req.body.country,
       password: hash,
       dateOfBirth: req.body.dateOfBirth,
