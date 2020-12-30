@@ -14,9 +14,11 @@ exports.userBoard = (req, res) => {
 exports.create = (req, res) => {
   // Validate request
   if (
+    !req.body.name ||
     !req.body.username ||
     !req.body.password ||
     !req.body.email ||
+    !req.body.country ||
     !req.body.dateOfBirth
   ) {
     return res.status(400).send({
@@ -26,8 +28,10 @@ exports.create = (req, res) => {
   // Create a user
   bcrypt.hash(req.body.password, 6).then((hash) => {
     const user = new User({
+      name: req.body.name,
       username: req.body.username,
       email: req.body.email,
+      country: req.body.country,
       password: hash,
       dateOfBirth: req.body.dateOfBirth,
     });
