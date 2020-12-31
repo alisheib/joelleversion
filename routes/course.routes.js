@@ -53,18 +53,18 @@ router.post("/add", function (req, res) {
 // then for each property do 
 // course.name = req.body?.name || course.name; => this basically checks if body has a name property, if yes => set it to that otherwise keep the same;
 router.put("/course/:id", function (req, res) {
-	let params = { 
-        name: req.body.name,
-        type: req.body.type, 
+	let params = {
+		name: req.body.name,
+		type: req.body.type,
 		students: req.body.students,
-		repeating:!!req.body.repeating,
-		time:req.body.time,
-		instructorID:req.body.instructorID
-};
+		repeating: !!req.body.repeating,
+		time: req.body.time,
+		instructorID: req.body.instructorID
+	};
 
-for(let prop in params) if(!params[prop]) delete params[prop];
-	Course.findOneAndUpdate({_id: req.params.id}, params,  { upsert: true },
-		
+	for (let prop in params) if (!params[prop]) delete params[prop];
+	Course.findOneAndUpdate({ _id: req.params.id }, params, { upsert: true },
+
 		function (err, newCourse) {
 			if (err) {
 				res.status(400).send(err.message);
@@ -89,5 +89,4 @@ router.delete("/course/:id", function (req, res) {
 		}
 	})
 });
-
 module.exports = router;

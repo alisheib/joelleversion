@@ -5,35 +5,35 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 
-exports.signup = (req, res, next) => {
-  bcrypt.hash(req.body.password, 6).then(
-    (hash) => {
-      const user = new User({
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        phone: req.body.phone,
-        country: req.body.country,
-        password: hash,
-        dateOfBirth: req.body.dateOfBirth,
-        
-      });
-      user.save().then(
-        () => {
-          res.status(201).json({
-            message: 'User added successfully!'
-          });
-        }
-      ).catch(
-        (error) => {
-          res.status(500).json({
-            error: error
-          });
-        }
-      );
-    }
-  );
-};
+// exports.signup = (req, res, next) => {
+//   bcrypt.hash(req.body.password, 6).then(
+//     (hash) => {
+//       const user = new User({
+//         name: req.body.name,
+//         username: req.body.username,
+//         email: req.body.email,
+//         phone: req.body.phone,
+//         country: req.body.country,
+//         password: hash,
+//         dateOfBirth: req.body.dateOfBirth,
+
+//       });
+//       user.save().then(
+//         () => {
+//           res.status(201).json({
+//             message: 'User added successfully!'
+//           });
+//         }
+//       ).catch(
+//         (error) => {
+//           res.status(500).json({
+//             error: error
+//           });
+//         }
+//       );
+//     }
+//   );
+// };
 
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email }).then(
@@ -47,9 +47,10 @@ exports.login = (req, res, next) => {
         (valid) => {
           if (!valid) {
             return res.status(401).json({
-              error: new Error('Incorrect password!')
+              error: 'Incorrect password!'
             });
           }
+          // SUGGESTION i think random token secret should be replaced with out secret key
           const token = jwt.sign(
             { userId: user._id },
             'RANDOM_TOKEN_SECRET',

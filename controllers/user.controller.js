@@ -1,7 +1,5 @@
-const User = require("../models/User.model");
 var bcrypt = require("bcryptjs");
-const { user } = require("../models");
-
+const User = require("../models/User");
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");
 };
@@ -35,19 +33,17 @@ exports.create = (req, res) => {
       phone: req.body.phone,
       country: req.body.country,
       password: hash,
-      dateOfBirth: req.body.dateOfBirth,
+      dateOfBirth: req.body.dateOfBirth.toString(),
     });
-    user
-      .save()
+    user.save()
       .then(() => {
         res.status(201).json({
-          message: "User added successfully!",
+          username: user.username,
+          email: user.email
         });
       })
       .catch((error) => {
-        res.status(500).json({
-          error: error,
-        });
+        res.status(500).json({ error: error });
       });
   });
 };
@@ -100,17 +96,17 @@ exports.update = async (req, res, next) => {
 
 //For updating passwords - Hash updated password and then save it
 exports.updatePassword = async (req, res) => {
-  bcrypt.hash(req.body.password, 6, async function(err, hash){
-     User.findById(req.params.ObjectId, function (err, doc) {
-      if (err) { return err;}
-       doc.password = hash;
-       doc.save(User);
-       res.status(201).json({
+  bcrypt.hash(req.body.password, 6, async function (err, hash) {
+    User.findById(req.params.ObjectId, function (err, doc) {
+      if (err) { return err; }
+      doc.password = hash;
+      doc.save(User);
+      res.status(201).json({
         message: 'Password updated successfully!'
       });
-     }); 
     });
-    }
+  });
+}
 
 // Delete a user with the specified ID in the request
 exports.delete = (req, res) => {
@@ -134,3 +130,4 @@ exports.delete = (req, res) => {
       });
     });
 };
+

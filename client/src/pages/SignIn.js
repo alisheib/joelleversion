@@ -1,8 +1,46 @@
-import React from 'react';
-import Hero from '../components/Hero';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Hero from '../components/Hero';
+import axios from "axios";
 
-class SignIn extends React.Component {
+
+
+class SignIn extends Component {
+
+  initialState = {
+    password: "",
+    email: ""
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = this.initialState;
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newData = {
+      email: this.state.email,
+      password: this.state.password,
+    }
+
+    axios.post('/api/auth/signin', newData)
+      .then(res => {
+        // TODO redirect to dashboard here
+        console.log(res.data);
+      })
+      .catch(err => console.log(err.response.data))
+  }
+
   render() {
     return (
       <div>
@@ -28,14 +66,14 @@ class SignIn extends React.Component {
                     <div className="col-lg-5 col-12">
                       <div>
                         <h2 className="mb-3">Sign In</h2>
-                        <form id="contact-form" method="post" action="php/contact.php">
+                        <form onSubmit={this.onSubmit}>
                           <div className="messages" />
                           <div className="form-group">
-                            <input id="form_name" type="text" name="name" className="form-control" placeholder="User name" required="required" data-error="Username is required." />
+                            <input id="form_name" value={this.state.email} onChange={this.onChange} type="text" name="email" className="form-control" placeholder="Email" required="required" data-error="Email is required." />
                             <div className="help-block with-errors" />
                           </div>
                           <div className="form-group">
-                            <input id="form_password" type="password" name="password" className="form-control" placeholder="Password" required="required" data-error="password is required." />
+                            <input id="form_password" value={this.state.password} onChange={this.onChange} type="password" name="password" className="form-control" placeholder="Password" required="required" data-error="password is required." />
                             <div className="help-block with-errors" />
                           </div>
                           <div className="form-group mt-4 mb-5">
@@ -46,7 +84,8 @@ class SignIn extends React.Component {
                               </div>
                               <Link to="/forgot-password" class="btn-link">Forgot password?</Link>
                             </div>
-                          </div> <Link to="#" className="btn btn-primary">Login Now</Link>
+                          </div>
+                          <input type="submit" value="Login Now" className="btn btn-primary" />
                         </form>
                         <div className="d-flex align-items-center mt-4"> <span className="text-muted mr-1">Don't have an account?</span>
                           <Link to="/sign-up" class="btn-link">Sign Up</Link>

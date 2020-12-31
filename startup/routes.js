@@ -3,7 +3,7 @@ const cors = require("cors");
 var corsOptions = { origin: "http://localhost:8081" };
 
 const authRoutes = require('../routes/auth.routes');
-const usersRoutes = require('../routes/auth.routes');
+const usersRoutes = require('../routes/user.routes.js');
 const coursesRoutes = require('../routes/course.routes');
 
 module.exports = function (app) {
@@ -32,6 +32,7 @@ module.exports = function (app) {
 
 	// simple redirection route so users can't access undefined routes
 	app.use('*', function (req, res) {
+		console.log(req.originalUrl);
 		return res.redirect('/');
 	})
 }
