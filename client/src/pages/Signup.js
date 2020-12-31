@@ -56,12 +56,12 @@ class Signup extends Component {
       .then(res => {
         axios.post('/api/auth/signin', newData)
           .then(res => {
-            // redirect user to dashboard here
+            // TODO redirect user to dashboard here
             console.log(res.data)
             this.setState(this.initalState); // no need for this
           })
           .catch(err => {
-            // show interface errors here
+            // ADD show interface errors here
             console.log(err.response.data)
           });
       })
