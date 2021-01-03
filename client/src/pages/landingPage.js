@@ -12,21 +12,21 @@ class LandingPage extends React.Component {
 					</ul>
 					<div className="carousel-inner">
 						<div className="carousel-item active">
-							<img src="assests/img/Slider/main-home-1.jpg" alt="carousel-item" />
+							<img src="assets/img/Slider/main-home-1.jpg" alt="carousel-item" />
 							<div className="carousel-caption">
 								<h3>Want to Learn Music From The <br />Comfort Of Your Home?</h3>
 								<button type="button" className="btn btn-primary btn-lg">Get Started</button>
 							</div>
 						</div>
 						<div className="carousel-item">
-							<img src="assests/img/Slider/main-home-2.jpg" alt="carousel-item" />
+							<img src="assets/img/Slider/main-home-2.jpg" alt="carousel-item" />
 							<div className="carousel-caption">
 								<h3>Want to Learn Music From The <br />Comfort Of Your Home?</h3>
 								<button type="button" className="btn btn-primary btn-lg">Get Started</button>
 							</div>
 						</div>
 						<div className="carousel-item">
-							<img src="assests/img/Slider/main-home-3.jpg" alt="carousel-item" />
+							<img src="assets/img/Slider/main-home-3.jpg" alt="carousel-item" />
 							<div className="carousel-caption">
 								<h3>Want to Learn Music From The <br />Comfort Of Your Home?</h3>
 								<button type="button" className="btn btn-primary btn-lg">Get Started</button>
@@ -39,22 +39,22 @@ class LandingPage extends React.Component {
 					<center><h1>Here's How It Works</h1></center>
 					<div className="row text-center padding">
 						<div className="col-xs-12 col-sm-6 col-md-4">
-							<i> <img src="assests/img/Steps/Step1.png" alt="process step" /></i>
+							<i> <img src="assets/img/Steps/Step1.png" alt="process step" /></i>
 						</div>
 						<div className="col-xs-12 col-sm-6 col-md-4">
-							<i> <img src="assests/img/Steps/Step2.png" alt="process step" /></i>
+							<i> <img src="assets/img/Steps/Step2.png" alt="process step" /></i>
 						</div>
 						<div className="col-xs-12 col-sm-6 col-md-4">
-							<i> <img src="assests/img/Steps/Step3.png" alt="process step" /></i>
+							<i> <img src="assets/img/Steps/Step3.png" alt="process step" /></i>
 						</div>
 						<div className="col-xs-12 col-sm-6 col-md-4">
-							<i> <img src="assests/img/Steps/Step4.png" alt="process step" /></i>
+							<i> <img src="assets/img/Steps/Step4.png" alt="process step" /></i>
 						</div>
 						<div className="col-xs-12 col-sm-6 col-md-4">
-							<i> <img src="assests/img/Steps/Step5.png" alt="process step" /></i>
+							<i> <img src="assets/img/Steps/Step5.png" alt="process step" /></i>
 						</div>
 						<div className="col-xs-12 col-sm-6 col-md-4">
-							<i> <img src="assests/img/Steps/Step6.png" alt="process step" /></i>
+							<i> <img src="assets/img/Steps/Step6.png" alt="process step" /></i>
 						</div>
 					</div>
 					<hr className="my-4" />
@@ -64,39 +64,29 @@ class LandingPage extends React.Component {
 					<center><h1 style={{ marginTop: '5%' }}>Our Unique Points-Based Payments</h1></center>
 				</div>
 				<section id="pointSection">
-					<img id="sideImage" src="assests/img/Point System/POS pic.svg" alt="point based system" />
+					<img id="sideImage" src="assets/img/Point-System/POS.svg" alt="point based system" />
 					<div id="pointSystem">
-						<div>
-							<div className="imageParent">
-								<assests img>
-								</assests></div>
-						</div>
 						<div className="pointItem">
 							<div className="imageParent">
-								<img src="assests/img/Point System/smartphone-money-pay in-pay out-security.svg" alt="point based system" />
+								<img src="assets/img/Point-System/smartphone.svg" alt="point based system" />
 							</div>
 							<h2>Highly Effective Payment Method</h2>
 						</div>
 						<div className="pointItem">
 							<div className="imageParent">
-								<img src="assests/img/Point System/credit-card.svg" alt="point based system" />
+								<img src="assets/img/Point-System/credit-card.svg" alt="point based system" />
 							</div>
 							<h2>Highly Secure</h2>
 						</div>
-						<div>
-							<div className="imageParent">
-								<assests img>
-								</assests></div>
-						</div>
 						<div className="pointItem">
 							<div className="imageParent">
-								<img src="assests/img/Point System/advisor.svg" alt="point based system" />
+								<img src="assets/img/Point-System/advisor.svg" alt="point based system" />
 							</div>
 							<h2>Fiduciary Accounts Support</h2>
 						</div>
 						<div className="pointItem">
 							<div className="imageParent">
-								<img src="assests/img/Point System/refund.svg" alt="point based system" />
+								<img src="assets/img/Point-System/refund.svg" alt="point based system" />
 							</div>
 							<h2>Completely Refundable</h2>
 						</div>

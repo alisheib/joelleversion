@@ -3,18 +3,30 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import axios from "axios";
 
+class SignUp extends Component {
 
-class Signup extends Component {
+  initialErrors = {
+    nameError: "",
+    usernameError: "",
+    passwordError: "",
+    emailError: "",
+    confirmPasswordError: "",
+    checkBoxError: "",
+    dateOfBirthError: ""
+  }
 
   initalState = {
+    name: "",
+    username: "",
     email: "",
     password: "",
-    name: "",
+    confirmPassword: "",
     country: "",
     countryValue: "",
     phone: "",
     dateOfBirth: "",
-    username: ""
+    checkbox: false,
+    errors: this.initialErrors
   }
 
   constructor(props) {
@@ -24,52 +36,125 @@ class Signup extends Component {
     this.onChange = this.onChange.bind(this);
     this.onChangeCountry = this.onChangeCountry.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
+    this.validateInputs = this.validateInputs.bind(this);
   }
 
+
+
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    const isCheckbox = e.target.type === "checkbox";
+    this.setState(prevState => ({
+      ...prevState,
+      [e.target.name]: isCheckbox ? e.target.checked : e.target.value
+    }));
   };
+
 
   onChangeCountry(e) {
     const { options, selectedIndex, value } = e.target;
-    this.setState({
+    this.setState(prevState => ({
+      ...prevState,
       country: options[selectedIndex].innerText,
       countryValue: value
-    });
+    }));
   };
+
+
+
+  validateInputs() {
+    const emailRegex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+
+    const { name, email, password, confirmPassword, dateOfBirth, checkbox } = this.state;
+    const errors = { ...this.initialErrors };
+
+
+    // name must be full name => have a space
+    if (!name.trim().includes(" "))
+      errors.nameError = "Please enter your full name";
+
+
+    if (!email.match(emailRegex))
+      errors.emailError = "Please enter a valid email address";
+
+    if (password.length < 8)
+      errors.passwordError = "Password must be at least 8 characters"
+
+    if (password !== confirmPassword)
+      errors.confirmPasswordError = "Passwords don't match";
+
+    if (!checkbox)
+      errors.checkBoxError = "Please agree to the terms of use and privacy policy"
+
+    // check if at least 5 years old
+    if (new Date().getFullYear() - parseInt(dateOfBirth.split('-')[0]) < 5)
+      errors.dateOfBirthError = "You must be at least 5 years old"
+
+    this.setState(prevState => ({
+      ...prevState,
+      errors: errors
+    }));
+
+    // check if there are any errors => any of the errors is not empty
+    for (let err in errors)
+      if (errors[err]) return false;
+
+    return true;
+  }
+
+
 
 
   onSubmit(e) {
     e.preventDefault();
+    const isValid = this.validateInputs();
+    console.log(isValid);
+    if (isValid) {
+      const newData = {
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        country: this.state.country,
+        dateOfBirth: this.state.dateOfBirth.toLocaleString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),
+        username: this.state.username,
+        phone: this.state.phone,
+        confirmpassword: this.state.confirmPassword
+      }
 
-    const newData = {
-      email: this.state.email,
-      password: this.state.password,
-      name: this.state.name,
-      country: this.state.country,
-      dateOfBirth: this.state.dateOfBirth.toLocaleString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),
-      username: this.state.username,
-      phone: this.state.phone,
+
+      axios.post('/api/users', newData)
+        .then(res => {
+          axios.post('/api/auth/signin', newData)
+            .then(res => {
+              // set token in localStorage
+              localStorage.setItem('ijam-user-token', res.data);
+              this.setState(this.initalState);
+
+              // ADD redirect user to user dashboard
+            })
+            .catch(err => { console.log(err); });
+        })
+        .catch(err => {
+          // show interface errors here
+          let error = err.response.data.message;
+          const errors = { ...this.state.errors };
+
+          if (error.toLowerCase().includes("email"))
+            errors.emailError = error;
+          else if (error.toLowerCase().includes("username"))
+            errors.usernameError = error;
+
+          this.setState(prevState => ({ ...prevState, errors: errors }));
+        });
     }
 
-    axios.post('/api/users', newData)
-      .then(res => {
-        axios.post('/api/auth/signin', newData)
-          .then(res => {
-            // TODO redirect user to dashboard here
-            console.log(res.data)
-            this.setState(this.initalState); // no need for this
-          })
-          .catch(err => {
-            // ADD show interface errors here
-            console.log(err.response.data)
-          });
-      })
-      .catch(err => console.log(err.response.data));
+
+
   }
 
-
   render() {
+    const { name, username, email, phone, password, confirmPassword, countryValue, dateOfBirth, checkbox, errors } = this.state;
+
     return (
       <div>
         {/* page wrapper start */}
@@ -102,49 +187,59 @@ class Signup extends Component {
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-group">
-                              <input id="form_name" value={this.state.name} onChange={this.onChange} type="text" name="name" className="form-control" placeholder="Full name" required="required" data-error="Full name is required." />
-                              <div className="help-block with-errors" />
+                              <input id="form_name" value={name} onChange={this.onChange} type="text" name="name" className="form-control" placeholder="Full name" required="required" data-error="Full name is required." />
+                              <div className="help-block with-errors">
+                                {errors.nameError}
+                              </div>
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
-                              <input id="form_lastname" value={this.state.username} onChange={this.onChange} type="text" name="username" className="form-control" placeholder="Username" required="required" data-error="Username is required." />
-                              <div className="help-block with-errors" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <input id="form_email" value={this.state.email} onChange={this.onChange} type="email" name="email" className="form-control" placeholder="Email" required="required" data-error="Valid email is required." />
-                              <div className="help-block with-errors" />
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <input id="form_phone" type="tel" value={this.state.phone} onChange={this.onChange} name="phone" className="form-control" placeholder="Phone" data-error="Phone is required" />
-                              <div className="help-block with-errors" />
+                              <input id="form_username" value={username} onChange={this.onChange} type="text" name="username" className="form-control" placeholder="Username" required="required" data-error="Username is required." />
+                              <div className="help-block with-errors">
+                                {errors.usernameError}
+                              </div>
                             </div>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-group">
-                              <input id="form_password" value={this.state.password} onChange={this.onChange} type="password" name="password" className="form-control" placeholder="Password" required="required" data-error="password is required." />
-                              <div className="help-block with-errors" />
+                              <input id="form_email" value={email} onChange={this.onChange} type="text" name="email" className="form-control" placeholder="Email" required="required" data-error="Valid email is required." />
+                              <div className="help-block with-errors">
+                                {errors.emailError} </div>
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
-                              <input id="form_password1" value={this.state.password} onChange={this.onChange} type="password" name="password" className="form-control" placeholder="Confirm Password" required="required" data-error="Confirm Password is required." />
-                              <div className="help-block with-errors" />
+                              <input id="form_phone" type="tel" value={phone} onChange={this.onChange} name="phone" className="form-control" placeholder="Phone" data-error="Phone is required" />
+                              <div className="help-block with-errors">
+                              </div>
                             </div>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-group">
-                              <select className="form-control" value={this.state.countryValue} onChange={this.onChangeCountry} name="country" >
+                              <input id="form_password" value={password} onChange={this.onChange} type="password" name="password" className="form-control" placeholder="Password" required="required" data-error="password is required." />
+                              <div className="help-block with-errors">
+                                {errors.passwordError}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input id="form_password1" value={confirmPassword} onChange={this.onChange} type="password" name="confirmPassword" className="form-control" placeholder="Confirm Password" required="required" data-error="Confirm Password is required." />
+                              <div className="help-block with-errors">
+                                {errors.confirmPasswordError}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <select className="form-control" value={countryValue} onChange={this.onChangeCountry} name="country" >
                                 <option value="Country">Select Country...</option>
                                 <option value="AF">Afghanistan</option>
                                 <option value="AL">Albania</option>
@@ -393,13 +488,15 @@ class Signup extends Component {
                                 <option value="ZM">Zambia</option>
                                 <option value="ZW">Zimbabwe</option>
                               </select>
-                              <div className="help-block with-errors" />
+                              <div className="help-block with-errors"></div>
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
-                              <input type="date" id="birthday" value={this.state.dateOfBirth} onChange={this.onChange} placeholder="dd/mm/yy" name="dateOfBirth" required="required" data-error="Date of Birth is required" className="form-control" />
-                              <div className="help-block with-errors" />
+                              <input type="date" id="birthday" value={dateOfBirth} onChange={this.onChange} placeholder="dd/mm/yy" name="dateOfBirth" required="required" data-error="Date of Birth is required" className="form-control" />
+                              <div className="help-block with-errors">
+                                {errors.dateOfBirthError}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -407,12 +504,16 @@ class Signup extends Component {
                           <div className="col-md-12">
                             <div className="remember-checkbox clearfix mb-4">
                               <div className="form-check">
-                                <input type="checkbox" className="form-check-input float-none" id="customCheck1" />
-                                <label className="form-check-label" htmlFor="customCheck1">I agree to the term of use and privacy policy</label>
+                                <input type="checkbox" name="checkbox" className="form-check-input float-none" id="customCheck1" onChange={this.onChange} checked={checkbox} value={checkbox} />
+                                <label className="form-check-label" htmlFor="customCheck1">I agree to the terms of use and privacy policy</label>
+                                <div className="help-block with-errors">{errors.checkBoxError}
+                                </div>
+
                               </div>
                             </div>
                           </div>
                         </div>
+
                         <div className="row">
                           <div className="col">
                             {/*  <Link to="#" className="btn btn-primary">Create Account</Link> */}
@@ -420,6 +521,7 @@ class Signup extends Component {
                             <span className="mt-4 d-block">Have An Account ? <Link to='/sign-in' >Sign In!</Link></span>
                           </div>
                         </div>
+
                       </form>
                     </div>
                   </div>
@@ -428,12 +530,7 @@ class Signup extends Component {
             </section>
 
             {/*Signup end*/}
-
-
           </div>
-
-
-
         </div>
 
         <div className="scroll-top"><Link className="smoothscroll" to="#top">Scroll Top</Link></div>
@@ -441,4 +538,4 @@ class Signup extends Component {
     );
   }
 }
-export default Signup;
+export default SignUp;

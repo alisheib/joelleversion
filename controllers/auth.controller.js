@@ -40,7 +40,7 @@ exports.login = (req, res, next) => {
     (user) => {
       if (!user) {
         return res.status(401).json({
-          error: new Error('User not found!')
+          error: 'User not found!'
         });
       }
       bcrypt.compare(req.body.password, user.password).then(
@@ -50,15 +50,13 @@ exports.login = (req, res, next) => {
               error: 'Incorrect password!'
             });
           }
-          // SUGGESTION i think random token secret should be replaced with out secret key
           const token = jwt.sign(
-            { userId: user._id },
-            'RANDOM_TOKEN_SECRET',
-            { expiresIn: '24h' });
-          res.status(200).json({
-            userId: user._id,
-            token: token
-          });
+            {
+              userId: user._id
+            },
+            config.get('privateAuthKey'), { expiresIn: '24h' });
+
+          res.status(200).json(token);
         }
       ).catch(
         (error) => {

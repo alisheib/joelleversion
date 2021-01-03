@@ -14,7 +14,7 @@ class error extends React.Component {
                 <div className="container h-100">
                   <div className="row h-100">
                     <div className="col-12 text-center h-100 d-flex align-items-center">
-                      <div className="w-100"><img className="img-fluid d-inline mb-5" src="assests/images/404.png" alt="error 404" />
+                      <div className="w-100"><img className="img-fluid d-inline mb-5" src="assets/images/404.png" alt="error 404" />
                         <h2>Oops! Page Not Found</h2>
                         <h6>You’re either misspelling the URL
                   or requesting a page that's no longer here.</h6>

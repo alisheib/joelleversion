@@ -23,7 +23,7 @@ class forgotP extends React.Component {
                 <div className="container">
                   <div className="row align-items-center">
                     <div className="col-lg-7 col-12">
-                      <img className="img-fluid" src="assests/fp.svg" alt="forgot password" />
+                      <img className="img-fluid" src="assets/fp.svg" alt="forgot password" />
                     </div>
                     <div className="col-lg-5 col-12">
                       <div>

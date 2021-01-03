@@ -9,7 +9,7 @@ class Newsletter extends React.Component {
             <div className="container">
               <div className="row">
                 <div className="col">
-                  <div className="bg-light bg-pos-l py-6 px-4 px-lg-6 text-center rounded" data-bg-img="./assests/images/bg/02.png">
+                  <div className="bg-light bg-pos-l py-6 px-4 px-lg-6 text-center rounded" data-bg-img="./assets/images/bg/02.png">
                     <div className="mb-5">
                       <h2><span className="font-w-4 d-block">Have any questions?</span> Contact Us</h2>
                     </div>
