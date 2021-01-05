@@ -1,9 +1,11 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 class LandingPage extends React.Component {
 	render() {
 		return (
 			<div>
+				<Navbar />
 				<div id="slides" className="carousel slide" data-ride="carousel">
 					<ul className="carousel-indicators">
 						<li data-target="#slides" data-slide-to={0} className="active" />
