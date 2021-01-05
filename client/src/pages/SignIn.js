@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Hero from '../components/Hero';
+import Hero from '../components/General/Hero';
+import Navbar from '../components/General/Navbar';
+
+import '../assets/css/style.css'
+import '../assets/css/theme-plugin.css'
+import '../assets/css/theme.min.css'
+
+import imgLogin from "../assets/img/login.png";
+
 import axios from "axios";
 
 
@@ -73,6 +81,7 @@ class SignIn extends Component {
 		const { email, password, isCheckedRemember, errors } = this.state;
 		return (
 			<div>
+				<Navbar />
 				{/* page wrapper start */}
 				<div className="page-wrapper">
 
@@ -89,7 +98,7 @@ class SignIn extends Component {
 							<div className="container">
 								<div className="row align-items-center">
 									<div className="col-lg-7 col-12">
-										<img className="img-fluid" src="assets/images/login.png" alt="login" />
+										<img className="img-fluid" src={imgLogin} alt="login" />
 									</div>
 									<div className="col-lg-5 col-12">
 										<div>

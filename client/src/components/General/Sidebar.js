@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './Sidebardata';
-import '../styles/Sidebar.css';
+import '../../styles/Sidebar.css';
 import { IconContext } from 'react-icons';
 
 export default function Sidebar() {

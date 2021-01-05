@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SideBar from '../../components/Sidebar'
+import SideBar from '../../components/General/Sidebar'
 import '../../styles/courseInfo.css';
 function CourseInfoSet() {
 	return (

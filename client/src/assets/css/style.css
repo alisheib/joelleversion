@@ -66,7 +66,6 @@ figure {
 }
 
 #fixed {
-  background-image: url("img/mac.png");
   position: fixed;
   display: block;
   top: 0;
@@ -146,7 +145,7 @@ figure {
 }
 
 #contactSection {
-  background-image: url("wa.png");
+  background-image: url("../img/wa.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -281,6 +280,13 @@ figure {
   background-image: url("../img/main-home-3.jpg");
   min-height: 100%;
   margin-top: -10%;
+}
+
+.hero-banner {
+  background-image: url("../img/bg/02.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #pointSection {

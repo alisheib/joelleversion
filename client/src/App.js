@@ -1,7 +1,7 @@
 import './App.css';
 import SignIn from './pages/SignIn';
-import Footer from './components/Footer';
-import Newsletter from './components/Newsletter';
+import Footer from './components/General/Footer';
+import Newsletter from './components/General/Newsletter';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import forgotPage from './pages/forgotPassword';
 import errorPage from './pages/404';

@@ -1,5 +1,5 @@
 import React from 'react'
-import SideBar from '../../components/Sidebar'
+import SideBar from '../../components/General/Sidebar'
 function GiveACourse() {
 	return (
 

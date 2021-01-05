@@ -1,6 +1,6 @@
 import React from 'react'
-import Cards from '../../components/Cards'
-import SideBar from '../../components/Sidebar'
+import Cards from '../../components/Course/Cards'
+import SideBar from '../../components/General/Sidebar'
 function MyCourses() {
 	return (
 		<div>

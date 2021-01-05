@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import img1 from '../img/dummyimg.png';
+import img1 from '../../assets/img/dummyimg.png';
 
 // TODO Refactor to take courses as props and map them to Cards
 class Cards extends React.Component {
