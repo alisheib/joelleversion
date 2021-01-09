@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Hero from '../components/General/Hero';
 import Navbar from '../components/General/Navbar';
 
@@ -137,6 +137,7 @@ class SignUp extends Component {
 							this.setState(this.initalState);
 
 							// ADD redirect user to user dashboard
+							<Redirect to='/Courses' />
 						})
 						.catch(err => { console.log(err); });
 				})

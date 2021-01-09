@@ -17,6 +17,15 @@ import CourseInfoSet from './pages/UserDashboard/CourseInfoSet';
 import CourseInfoDesc from './pages/UserDashboard/CourseInfoDesc';
 
 
+// NEEDS a bit of refactoring to check if the token is valid => hence why the context api is useful
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+// 	<Route {...rest} render={(props) => (
+// 		!localStorage.getItem('ijam-user-token')
+// 			? <Component {...props} />
+// 			: <Redirect to='/' />
+// 	)} />
+// )
+
 function App() {
 	return (
 		<div>
@@ -33,11 +42,12 @@ function App() {
 					<Route exact path='/Courses/Give' component={GiveACourse} />
 					<Route exact path='/Courses/MyCourses' component={MyCourses} />
 					<Route exact path='/Profile' component={Profile} />
-					<Route exact path='/Course/CourseInfoDesc' component={CourseInfoDesc} />
-					<Route exact path='/Course/CourseInfoSet' component={CourseInfoSet} />
+					<Route exact path='/Course/CourseInfoDesc/:id' component={CourseInfoDesc} />
+					<Route exact path='/Course/CourseInfoSet/:id' component={CourseInfoSet} />
 
 					<Route path='*' component={errorPage} />
 				</Switch>
+
 				<Newsletter />
 				<Footer />
 

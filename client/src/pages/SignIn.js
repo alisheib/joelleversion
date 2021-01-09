@@ -59,7 +59,6 @@ class SignIn extends Component {
 					sessionStorage.setItem('ijam-user-token', res.data);
 
 				this.setState(this.initialState);
-
 				// TODO redirect to dashboard here
 			})
 			.catch(err => {

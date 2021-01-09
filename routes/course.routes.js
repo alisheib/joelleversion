@@ -3,35 +3,27 @@ const Course = require('../models/Course');
 
 
 router.get("/", function (req, res) {
-	console.log("getting all courses");
 	Course.find()
 		.exec(function (err, courses) {
-			if (err) {
-				res.send("error has occured")
-			} else {
-				console.log(courses);
-				res.json(courses)
-			}
+			if (err)
+				return res.send("error has occured")
+			return res.json(courses)
 		})
 });
 
 router.get("/:id", function (req, res) {
-	console.log("fetching a course");
 	Course.findOne({
 		_id: req.params.id
 	}).exec(function (err, course) {
-		if (err) {
-			res.send("error occured");
-		} else {
-			console.log(course);
-			res.json(course);
-		}
+		if (err)
+			return res.send("error occured");
+
+		return res.json(course);
+
 	});
 });
 
 router.post("/add", function (req, res) {
-
-	// NOTE: instructor ID and students should be valid ObjectIDs in the database
 	const { name, type, instructorID, students, time, repeating } = req.body;
 	var newCourse = new Course({
 		name, type, instructorID, students, time, repeating: !!repeating
@@ -47,34 +39,24 @@ router.post("/add", function (req, res) {
 	});
 });
 
-// FIX update all fields which have been provided => like if name is provided update name
-// easy way to do this
-// get course with matching id using find and not update
-// then for each property do 
-// course.name = req.body?.name || course.name; => this basically checks if body has a name property, if yes => set it to that otherwise keep the same;
-router.put("/course/:id", function (req, res) {
-	let params = {
-		name: req.body.name,
-		type: req.body.type,
-		students: req.body.students,
-		repeating: !!req.body.repeating,
-		time: req.body.time,
-		instructorID: req.body.instructorID
-	};
 
-	for (let prop in params) if (!params[prop]) delete params[prop];
-	Course.findOneAndUpdate({ _id: req.params.id }, params, { upsert: true },
+router.put("/course/:id", async (req, res) => {
+	console.log('course');
+	try {
+		const id = req.params.id;
+		const updates = req.body;
+		const options = { new: true, useFindAndModify: true };
 
-		function (err, newCourse) {
-			if (err) {
-				res.status(400).send(err.message);
-			} else {
-				console.log(newCourse);
-				res.status(200).send(newCourse);
-			}
-		}
+		let result = await Course.findOneAndUpdate(id, updates, options);
 
-	)
+		if (result)
+			return res.status(200).send(result);
+
+		return res.status(404).send('no course matching the given id')
+	}
+	catch (err) {
+		res.status(500).send(err.message);
+	}
 })
 
 router.delete("/course/:id", function (req, res) {

@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import "../../styles/card-style.css";
 
 export default function Card(props) {
+	const { courseID, imgsrc, title, par } = props;
+
 	return (
 		<div className="card text-center">
 			<div className="overflow">
-				<img src={props.imgsrc} className="card-img-top" alt="course thumbnail" />
+				<img src={imgsrc} className="card-img-top" alt="course thumbnail" />
 			</div>
 			<div className="card-body text-dark">
-				<h4 className="Card-title">{props.title}</h4>
-				<p className="card-text text-secondary">
-					{props.par}
-				</p>
+				<h4 className="Card-title">{title}</h4>
+				<p className="card-text text-secondary">{par}</p>
 
-				<Link to="/Course/CourseInfoDesc" className="btn btn-outline-success">Go Anywhere</Link>
+				<Link to={`/Course/CourseInfoDesc/${courseID}`} className="btn btn-outline-success">Show More</Link>
 			</div>
 		</div>
 	)

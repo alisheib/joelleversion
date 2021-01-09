@@ -31,6 +31,11 @@ const Course = mongoose.model(
 			type: Boolean,
 			default: false
 		},
+		description: {
+			type: String,
+			default: "default course description",
+			required: false
+		}
 	})
 );
 

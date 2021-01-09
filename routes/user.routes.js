@@ -1,32 +1,25 @@
 const router = require("express").Router();
 const { authJwt } = require("../middleware");
-const controller = require("../controllers/user.controller");
 const { verifySignUp } = require("../middleware");
-const users = require("../controllers/user.controller.js");
+const userController = require("../controllers/user.controller.js");
+const authController = require('../controllers/auth.controller.js');
 
 // Retrieve all Users  - Tested done
-router.get("/", users.findAll);
+router.get("/", userController.findAll);
 
-// Retrieve a single Users with Username - Tested done
-router.get("/:username", users.findOne);
+router.get("/token", authController.findUserFromToken);
 
-router.get("/:id", [authJwt.verifyToken], controller.userBoard);
+router.get("/fetch/:ObjectId", userController.findById)
+// Create a new User
+router.post("/", [verifySignUp.checkDuplicateUsernameOrEmail], userController.create);
 
-// ADD update user info based on provided fields
+// Update a user
+router.put("/:ObjectId", userController.update);
 
-// Create a new User - Tested done
-router.post(
-  "/",
-  [verifySignUp.checkDuplicateUsernameOrEmail],
-  users.create
-);
+// Update Password 
+router.put('/updatepassword/:ObjectId', [authJwt.verifyToken], userController.updatePassword);
 
-router.put("/:ObjectId", users.update);
-
-//Hash then Update Password 
-router.put('/updatepassword/:ObjectId', users.updatePassword);
-
-// Delete a User with Id
-router.delete("/:ObjectId", users.delete);
+// Delete a user
+router.delete("/:ObjectId", userController.delete);
 
 module.exports = router;
