@@ -25,6 +25,11 @@ class MyCourses extends Component  {
 	};
 
 	displayCourse = (courses) => {
+		if(courses.length === 0){
+			return (
+				<h1>No Created Courses</h1>
+			)
+		}
 		return courses?.length > 0 && courses.map((course, index) => (
 			<div key={index} className="col-md-4">
 				<Card courseID={course._id} imgsrc={img1} title={course.name} par={course.type} />
@@ -65,6 +70,12 @@ class MyCourses extends Component  {
 
 
 		return (
+			
+			
+				
+			<div>
+			<SideBar />
+			<h3 className="h22">Created Courses</h3>
 			<div className="content">
 				<div className="container-fluid d-flex justify-content-center">
 					<div className="row">
@@ -73,6 +84,7 @@ class MyCourses extends Component  {
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		);
 	}
