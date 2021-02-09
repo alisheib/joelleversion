@@ -9,9 +9,9 @@ class Footer extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-5 col-xl-4 mr-auto mb-5 mb-lg-0"> <Link className="footer-logo h2 text-primary mb-0 font-w-7" to="index.html">
-                I<span className="text-dark font-w-4">Jam</span>
+                I<span className="text-dark font-w-4">Learn</span>
               </Link>
-                <p className="my-3">IJam, learn today Jam tomorrow</p>
+                <p className="my-3">ILearn, learn today Teach Tomorrow</p>
                 <ul className="list-inline">
                   <li className="list-inline-item">
                     <Link className="border rounded px-2 py-1 text-dark" to="#"><i className="la la-facebook" /></Link>

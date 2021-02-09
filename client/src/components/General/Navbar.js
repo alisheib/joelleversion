@@ -17,7 +17,7 @@ class Navbar extends React.Component {
 								{/*menu start*/}
 								<div className="col">
 									<nav className="navbar navbar-expand-lg navbar-light">
-										<Link to="/" className="navbar-brand logo text-primary mb-0 font-w-7">I<span className="text-dark font-w-4">Jam</span></Link>
+										<Link to="/" className="navbar-brand logo text-primary mb-0 font-w-7">I<span className="text-dark font-w-4">Learn</span></Link>
 										<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span className="navbar-toggler-icon" /></button>
 										<div className="collapse navbar-collapse" id="navbarNav">
 											<ul className="navbar-nav ml-auto mr-auto">
